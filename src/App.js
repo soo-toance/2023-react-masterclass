@@ -26,11 +26,14 @@ const Btn = styled.button`
 
 const Link = styled(Btn)``;
 
+const Input = styled.input.attrs({ required: true })`
+  background-color: tomato;
+`;
+
 function App() {
   return (
-    <Father>
-        <Btn>Log in</Btn>
-        <Btn as="a">Log in</Btn>
+    <Father as="header">
+        <Input />
     </Father>
   );
 }
