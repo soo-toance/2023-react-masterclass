@@ -4,11 +4,23 @@ const Father = styled.div`
   display: flex;
 `;
 
+const Box1 = styled.div`
+  background-color: teal;
+  width: 100px;
+  height: 100px;
+`;
+
+const Box2 = styled.div`
+  background-color: tomato;
+  width: 100px;
+  height: 100px;
+`
+
 function App() {
   return (
     <Father>
-        <div style={{backgroundColor:"teal", width:100, height: 100}}></div>
-        <div style={{backgroundColor:"tomato", width:100, height: 100}}></div>
+        <Box1 />
+        <Box2 />
     </Father>
   );
 }
