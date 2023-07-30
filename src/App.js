@@ -14,12 +14,16 @@ const Box2 = styled.div`
   background-color: tomato;
   width: 100px;
   height: 100px;
-`
+`;
+
+const Text = styled.span``;
 
 function App() {
   return (
     <Father>
-        <Box1 />
+        <Box1>
+          <Text>Hello</Text>
+        </Box1>
         <Box2 />
     </Father>
   );
