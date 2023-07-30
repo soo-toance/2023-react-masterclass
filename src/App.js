@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 const Father = styled.div`
@@ -16,13 +17,20 @@ const Circle = styled(Box)`
 
 const Text = styled.span``;
 
+const Btn = styled.button`
+  color: white;
+  background-color: tomato;
+  border: 0;
+  border-radius: 15px;
+`;
+
+const Link = styled(Btn)``;
+
 function App() {
   return (
     <Father>
-        <Box bgColor="teal">
-          <Text>Hello</Text>
-        </Box>
-        <Circle bgColor="tomato" />
+        <Btn>Log in</Btn>
+        <Btn as="a">Log in</Btn>
     </Father>
   );
 }
