@@ -49,10 +49,15 @@ const Title = styled.h1`
   color: ${(props) => props.theme.textColor};
 `;
 
+const Text = styled.span`
+    color:tomato;
+`;
+
 function App() {
   return (
     <Wrapper>
       <Title>Hi</Title>
+      <Text />
     </Wrapper>
   );
 }
