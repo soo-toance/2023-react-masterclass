@@ -1,40 +1,30 @@
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const Father = styled.div`
+const Wrapper = styled.div`
   display: flex;
 `;
 
+const rotationAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  } to {
+    transform: rotate(360deg);
+  }
+`;
+
 const Box = styled.div`
-  background-color: ${(props) => props.bgColor};
-  width: 100px;
-  height: 100px;
-`;
-
-const Circle = styled(Box)`
-  border-radius: 50px;
-`;
-
-const Text = styled.span``;
-
-const Btn = styled.button`
-  color: white;
+  height: 200px;
+  width: 200px;
   background-color: tomato;
-  border: 0;
-  border-radius: 15px;
-`;
-
-const Link = styled(Btn)``;
-
-const Input = styled.input.attrs({ required: true })`
-  background-color: tomato;
+  animation: ${rotationAnimation} 1s linear infinite;
 `;
 
 function App() {
   return (
-    <Father as="header">
-        <Input />
-    </Father>
+    <Wrapper>
+      <Box />
+    </Wrapper>
   );
 }
 export default App;
