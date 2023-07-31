@@ -23,13 +23,22 @@ const Box = styled.div`
   height: 200px;
   width: 200px;
   background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items:center;
   animation: ${rotationAnimation} 1s linear infinite;
+
+  span {
+    font-size: 36px;
+  }
 `;
 
 function App() {
   return (
     <Wrapper>
-      <Box />
+      <Box>
+        <span>*</span>
+      </Box>
     </Wrapper>
   );
 }
