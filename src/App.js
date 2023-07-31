@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   weight: 100vw;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 const rotationAnimation = keyframes`
@@ -22,6 +23,11 @@ const rotationAnimation = keyframes`
     border-radius: 0px;
   }
 `;
+
+const Star = styled.span`
+  font-size: 100px;
+`;
+
 
 const Box = styled.div`
   height: 200px;
@@ -39,16 +45,14 @@ const Box = styled.div`
   }
 `;
 
-const Star = styled.span`
-  font-size: 100px;
+const Title = styled.h1`
+  color: ${(props) => props.theme.textColor};
 `;
 
 function App() {
   return (
     <Wrapper>
-      <Box>
-        <Star>*</Star>
-      </Box>
+      <Title>Hi</Title>
     </Wrapper>
   );
 }
