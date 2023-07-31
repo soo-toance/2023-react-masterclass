@@ -3,6 +3,10 @@ import styled, { keyframes } from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
+  height: 100vh;
+  weight: 100vw;
+  justify-content: center;
+  align-items: center;
 `;
 
 const rotationAnimation = keyframes`
@@ -28,19 +32,22 @@ const Box = styled.div`
   align-items:center;
   animation: ${rotationAnimation} 1s linear infinite;
 
-  span {
-    font-size: 36px;
+  ${Star} {
     &:hover { // span:hover 와 동일 
-      font-size: 100px;
+      font-size: 36px;
     }
   }
+`;
+
+const Star = styled.span`
+  font-size: 100px;
 `;
 
 function App() {
   return (
     <Wrapper>
       <Box>
-        <span>*</span>
+        <Star>*</Star>
       </Box>
     </Wrapper>
   );
