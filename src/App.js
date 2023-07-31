@@ -30,6 +30,9 @@ const Box = styled.div`
 
   span {
     font-size: 36px;
+    &:hover { // span:hover 와 동일 
+      font-size: 100px;
+    }
   }
 `;
 
