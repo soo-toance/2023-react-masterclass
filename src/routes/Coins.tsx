@@ -29,9 +29,10 @@ const Coin = styled.li`
     margin-bottom: 10px;
     border-radius: 15px;
     a {
+        display: flex;
+        align-items: center;
         padding: 20px;
         transition: color 0.5s ease-in;
-        display: block;
     }
     &:hover {
         a {
@@ -43,6 +44,12 @@ const Coin = styled.li`
 const Title = styled.h1`
     font-size: 48px;
     color: ${props => props.theme.accentColor}
+`;
+
+const Img = styled.img`
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
 `;
 
 interface CoinInferface {
@@ -84,7 +91,10 @@ function Coins() {
                     {
                         coins.map(coin => (
                         <Coin key={coin.id}>
-                            <Link to={`/${coin.id}`}>{coin.name} &rarr; </Link>
+                            <Link to={`/${coin.id}`}>
+                                <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}></Img>
+                                {coin.name} &rarr; 
+                            </Link>
                         </Coin>
                     ))}
 
