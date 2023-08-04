@@ -7,9 +7,9 @@ import ApexChart from "react-apexcharts";
 interface IHistorical {
   time_open: string;
   time_close: string;
-  open: number;
-  high: number;
-  low: number;
+  open: string;
+  high: string;
+  low: string;
   close: string;
   volume: number;
   market_cap: number;
@@ -26,17 +26,23 @@ function Chart({ coinId } : ChartProps) { // parameter 가져오는 방법 2
       () => fetchCoinHistory(coinId)
   );
 
+
   return (
     <div>
       {isLoading ? (
         "Loading chart..."
       ) : (
         <ApexChart
-          type="line"
+          type="candlestick"
           series={[
             {
               name: "Price",
-              data: data?.map((price) => parseFloat(price.close)) ?? []
+              data: data?.map((item) => { 
+                return {
+                  x : new Date(item.time_close),
+                  y : [parseFloat(item.open), parseFloat(item.high), parseFloat(item.low), parseFloat(item.close)]
+                };
+              }) ?? []
             },
           ]}
           options={{
@@ -44,6 +50,7 @@ function Chart({ coinId } : ChartProps) { // parameter 가져오는 방법 2
               mode: "dark",
             },
             chart: {
+              type: 'candlestick',
               height: 300,
               width: 500,
               toolbar: {
@@ -52,12 +59,10 @@ function Chart({ coinId } : ChartProps) { // parameter 가져오는 방법 2
               background: "transparent",
             },
             grid: { show: false },
-            stroke: {
-              curve: "smooth",
-              width: 4,
-            },
             yaxis: {
-              show: false,
+              tooltip: {
+                enabled: true
+              }
             },
             xaxis: {
               axisBorder: { show: false },
@@ -65,10 +70,6 @@ function Chart({ coinId } : ChartProps) { // parameter 가져오는 방법 2
               labels: { show: false },
               type: "datetime",
               categories: data?.map((price) => price.time_close),
-            },
-            fill: {
-              type: "gradient",
-              gradient: { gradientToColors: ["#0be881"], stops: [0, 100] },
             },
             colors: ["#0fbcf9"],
             tooltip: {
