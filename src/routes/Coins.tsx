@@ -77,7 +77,7 @@ function Coins() {
             setCoins(json.slice(0, 100));
             setLoading(false);
         })(); 
-    }, []) // component start 시작 시에만 수ㅇ 
+    }, []) // component start 시작 시에만 수행
 
     return (
         <Container>
