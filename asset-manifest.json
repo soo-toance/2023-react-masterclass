@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/2023-react-masterclass/static/js/main.5bd75f0e.chunk.js",
-    "main.js.map": "/2023-react-masterclass/static/js/main.5bd75f0e.chunk.js.map",
+    "main.js": "/2023-react-masterclass/static/js/main.2f87c184.chunk.js",
+    "main.js.map": "/2023-react-masterclass/static/js/main.2f87c184.chunk.js.map",
     "runtime-main.js": "/2023-react-masterclass/static/js/runtime-main.5056941e.js",
     "runtime-main.js.map": "/2023-react-masterclass/static/js/runtime-main.5056941e.js.map",
     "static/js/2.292bedda.chunk.js": "/2023-react-masterclass/static/js/2.292bedda.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.5056941e.js",
     "static/js/2.292bedda.chunk.js",
-    "static/js/main.5bd75f0e.chunk.js"
+    "static/js/main.2f87c184.chunk.js"
   ]
 }
