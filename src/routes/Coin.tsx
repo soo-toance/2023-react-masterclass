@@ -17,6 +17,15 @@ import Price from "./Price";
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
+
+
+  a {
+   color: white; 
+   font-size: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
 `;
 
 const Loader = styled.span`
@@ -36,6 +45,7 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
 `;
+
 
 const Overview = styled.div`
   display: flex;
@@ -175,6 +185,7 @@ function Coin() {
           <Header>
             <Title>
               {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+              <Link to="/">Go back to Home</Link>
             </Title>
           </Header>
           {loading ? (
