@@ -20,12 +20,18 @@ interface PriceProps {
 
 const PricesList = styled.table`
   color: ${props => props.theme.textColor};
+  font-size: 12px;
+
+  thead {
+    line-height: 30px;
+    text-decoration: underline;
+    text-align: center;
+  }
 `;
 
 const Prices = styled.tr`
     color: ${props => props.theme.textColor};
     height: 20px;
-    font-size: 12px;
     padding: 10px;
 
     td {
@@ -52,8 +58,8 @@ function Price({coinId} : PriceProps) {
               <Loader>"Loading"</Loader>
           ) : <PricesList>
               <thead>
-                <td>시간</td>
-                <td>가격</td>
+                <td>time_close</td>
+                <td>price</td>
               </thead>
               {
                   data?.slice(0, 100).map(coin => (
