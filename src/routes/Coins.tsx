@@ -91,9 +91,12 @@ function Coins() {
                     {
                         coins.map(coin => (
                         <Coin key={coin.id}>
-                            <Link to={`/${coin.id}`}>
-                                <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}></Img>
-                                {coin.name} &rarr; 
+                            <Link to={{
+                                    pathname: `/${coin.id}`,
+                                    state: { name: coin.name },
+                                }}>
+                                    <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}></Img>
+                                    {coin.name} &rarr; 
                             </Link>
                         </Coin>
                     ))}
