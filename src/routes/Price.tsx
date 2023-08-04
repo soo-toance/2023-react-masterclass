@@ -1,5 +1,73 @@
-function Price() {
-    return <h1>Price</h1>;
-  }
-  
-  export default Price;
+import { useParams } from "react-router";
+import { useQuery } from "react-query";
+import { fetchCoinHistory } from "../api";
+import styled from "styled-components";
+
+interface IHistorical {
+  time_open: string;
+  time_close: string;
+  open: number;
+  high: number;
+  low: number;
+  close: string;
+  volume: number;
+  market_cap: number;
+}
+
+interface PriceProps {
+  coinId: string;
+}
+
+const PricesList = styled.table`
+  color: ${props => props.theme.textColor};
+`;
+
+const Prices = styled.tr`
+    color: ${props => props.theme.textColor};
+    height: 20px;
+    font-size: 12px;
+    padding: 10px;
+
+    td {
+      width: 500px;
+    }
+`;
+
+const Loader = styled.span`
+  text-align: center;
+  display: block;
+`;
+
+function Price({coinId} : PriceProps) {
+  const {isLoading, data } = useQuery<IHistorical[]>(
+    [ "fetchCoinHistory", coinId ],
+    () => fetchCoinHistory(coinId)
+  );
+
+
+    return (
+      <div>
+        {
+          isLoading ? (
+              <Loader>"Loading"</Loader>
+          ) : <PricesList>
+              <thead>
+                <td>시간</td>
+                <td>가격</td>
+              </thead>
+              {
+                  data?.slice(0, 100).map(coin => (
+                  <Prices key={coin.time_close}>
+                    <td>{new Date(coin.time_close).toISOString().replace(/T/, ' ').replace(/\..+/, '')}</td>
+                    <td>{coin.close}</td>
+                      {/* {new Date(coin.time_close).toISOString().replace(/T/, ' ').replace(/\..+/, '')} : {coin.close} 미김  */}
+                  </Prices>
+              ))}
+
+          </PricesList>
+      }
+      </div>
+    );
+}
+
+export default Price;
