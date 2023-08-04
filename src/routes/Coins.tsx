@@ -17,17 +17,18 @@ const Loader = styled.span`
 `;
 
 const Header = styled.header`
-    height: 10vh;
+    height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 `;
 
 const CoinsList = styled.ul`
 `;
 
 const Coin = styled.li`
-    background-color: white;
+    background-color: ${props => props.theme.textColor};
     color: ${props => props.theme.bgColor};
     margin-bottom: 10px;
     border-radius: 15px;

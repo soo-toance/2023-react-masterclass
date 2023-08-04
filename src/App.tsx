@@ -3,6 +3,8 @@ import Circle from "./Circle";
 import styled, { createGlobalStyle } from "styled-components"
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from './theme';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -68,13 +70,32 @@ a {
 
 `;
 
+const ThemeBtn = styled.button`
+  font-size: 12px;
+  margin: 10px auto;
+`;
+
+const TopConatiner = styled.div`
+  text-align: center;
+`;
 
 function App() {
+
+  const [theme, setTheme] = useState<string>();
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+}; 
+
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
+        <GlobalStyle />
+        <TopConatiner>
+           <ThemeBtn onClick={toggleTheme}>테마 변경</ThemeBtn>
+        </TopConatiner>
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }
