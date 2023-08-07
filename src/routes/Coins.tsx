@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
+import { useSetRecoilState } from "recoil";
+import { themeAtom } from "../atoms";
 
 const Container = styled.div`
     padding: 0px 20px;
@@ -87,6 +89,8 @@ function Coins({}: ICoinProps) {
     // }, []) // component start 시작 시에만 수행
 
     const { isLoading, data } = useQuery<CoinInferface[]>("allCoins", fetchCoins)
+    const setDarkAtom = useSetRecoilState(themeAtom);
+    const toggleDarkAtom = () =>setDarkAtom((prev) => (prev === 'light' ? 'dark' : 'light'));
 
     return (
         <Container>
@@ -95,7 +99,7 @@ function Coins({}: ICoinProps) {
             </Helmet>
             <Header>
                 <Title>코인</Title>
-                <button>Toggle Dark Mode</button>
+                <button onClick={toggleDarkAtom}>Toggle Dark Mode</button>
             </Header>
             {
                 isLoading ? (
