@@ -34,11 +34,12 @@ import { useForm } from "react-hook-form"
 
 interface IForm {
     toDo: string;
+    extraError? : string; 
 }
 
 
 function ToDoList() {
-    const { register, watch, handleSubmit, formState } = useForm<IForm>({
+    const { register, watch, handleSubmit, formState, setError } = useForm<IForm>({
         defaultValues: {
             toDo: "@naver.com"
         }
@@ -49,6 +50,10 @@ function ToDoList() {
 
     const onValid = (data:IForm) => {
         console.log(data);
+        // if (data.todo !== data.password1) {
+        //     setError('todo', { message: 'password are not the same', shouldFocus: {true}});
+        // }
+        setError("extraError", {message: "server offline"});
     };
 
     console.log(formState.errors);
@@ -58,6 +63,7 @@ function ToDoList() {
         <form onSubmit={handleSubmit(onValid)}>
             <input {...register("toDo", { 
                 required: 'ToDo is required', 
+                validate: (value) => !value.includes('Nico'),
                 pattern: {
                     value : /^[A-Za-z0-9._%+-]+@naver.com$/,
                     message: "Only naver.com emails allowed"
@@ -69,6 +75,7 @@ function ToDoList() {
         <span>
             {formState.errors?.toDo?.message}
         </span>
+        <span>{formState.errors?.extraError?.message}</span>
     </div>;
 }
 
