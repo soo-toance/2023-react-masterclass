@@ -34,13 +34,22 @@ import { useForm } from "react-hook-form"
 
 
 function ToDoList() {
-    const { register, watch } = useForm();
+    const { register, watch, handleSubmit, formState } = useForm();
     // console.log(watch) // 추적 가능 
     // console.log(register("toDo")); // name, onBlur, onChange 리턴 .. 
+    // console.log(formState);
+
+    const onValid = (data:any) => {
+        console.log(data);
+    };
+
 
     return <div>
-        <form>
-            <input {...register("Email")} placeholder="Write a to do" />
+        <form onSubmit={handleSubmit(onValid)}>
+            <input {...register("ToDo", { 
+                required: 'ToDo is required', 
+                minLength: {value:10, message: "your Todo is too short"} 
+            })} placeholder="Write a to do" />
             <button>Add</button>
         </form>
     </div>;
