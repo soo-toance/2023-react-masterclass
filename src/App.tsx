@@ -5,6 +5,8 @@ import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from './theme';
+import { themeAtom } from "./atoms";
+import { useRecoilValue } from "recoil";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -81,19 +83,21 @@ const TopConatiner = styled.div`
 
 function App() {
 
-  const [theme, setTheme] = useState<string>();
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-}; 
+  // const [theme, setTheme] = useState<string>();
+  // const toggleTheme = () => {
+  //   setTheme(theme === 'light' ? 'dark' : 'light')
+  // };
+  
+  const theme = useRecoilValue(themeAtom);
 
   return (
     <>
      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
         <GlobalStyle />
         <TopConatiner>
-           <ThemeBtn onClick={toggleTheme}>테마 변경</ThemeBtn>
+           <ThemeBtn >테마 변경</ThemeBtn>
         </TopConatiner>
-        <Router theme={theme} toggleTheme={toggleTheme}/>
+        <Router/>
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>

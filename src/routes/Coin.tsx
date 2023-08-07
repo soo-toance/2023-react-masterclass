@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Chart from "./Chart";
 import Price from "./Price";
+import { useRecoilValue } from "recoil";
+import { themeAtom } from "../atoms";
 
 const Title = styled.h1`
   font-size: 48px;
@@ -157,11 +159,10 @@ interface InfoData {
   }
 
 interface ICoinProps {
-    theme: string | undefined;
 }
 
 
-function Coin({theme}:ICoinProps) {
+function Coin({}:ICoinProps) {
     const { coinId } = useParams<RouteParams>();
     const { state } = useLocation<RouteState>();
     const priceMatch = useRouteMatch("/:coinId/price");
@@ -179,6 +180,7 @@ function Coin({theme}:ICoinProps) {
         }
     );
     const loading = infoLoading || tickersLoading;
+    const theme = useRecoilValue(themeAtom);
 
     return (
         <Container>

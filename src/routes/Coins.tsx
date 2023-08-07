@@ -67,11 +67,10 @@ interface CoinInferface {
 }
 
 interface ICoinProps {
-    toggleTheme: () => void;
 }
 
 // a href 는 redirect 시킴, link 사용 
-function Coins({toggleTheme}: ICoinProps) {
+function Coins({}: ICoinProps) {
     // const [coins, setCoins] = useState<CoinInferface[]>([]);
     // const [loading, setLoading] = useState(true);
 
@@ -96,7 +95,7 @@ function Coins({toggleTheme}: ICoinProps) {
             </Helmet>
             <Header>
                 <Title>코인</Title>
-                <button onClick={toggleTheme}>Toggle Dark Mode</button>
+                <button>Toggle Dark Mode</button>
             </Header>
             {
                 isLoading ? (
