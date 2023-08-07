@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import Circle from "./Circle";
 import styled, { createGlobalStyle } from "styled-components"
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -7,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from './theme';
 import { themeAtom } from "./atoms";
 import { useRecoilValue } from "recoil";
+import ToDoList from "./TodoList";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -94,9 +94,7 @@ function App() {
     <>
      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
         <GlobalStyle />
-        <TopConatiner>
-           <ThemeBtn >테마 변경</ThemeBtn>
-        </TopConatiner>
+        <ToDoList />
         <Router/>
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
