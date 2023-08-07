@@ -93,7 +93,7 @@ function App() {
         <TopConatiner>
            <ThemeBtn onClick={toggleTheme}>테마 변경</ThemeBtn>
         </TopConatiner>
-        <Router />
+        <Router theme={theme} toggleTheme={toggleTheme}/>
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>

@@ -16,10 +16,11 @@ interface IHistorical {
 }
 
 interface ChartProps {
+  theme: string | undefined;
   coinId: string;
 }
 
-function Chart({ coinId } : ChartProps) { // parameter 가져오는 방법 2 
+function Chart({ theme, coinId } : ChartProps) { // parameter 가져오는 방법 2 
   // const params = useParams(); // parameter 가져오는 방법 1 
   const {isLoading, data } = useQuery<IHistorical[]>(
       [ "fetchCoinHistory", coinId ],
@@ -47,7 +48,7 @@ function Chart({ coinId } : ChartProps) { // parameter 가져오는 방법 2
           ]}
           options={{
             theme: {
-              mode: "dark",
+              mode: (theme === 'light' ? 'dark' : 'light'),
             },
             chart: {
               type: 'candlestick',

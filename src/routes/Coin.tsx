@@ -156,7 +156,12 @@ interface InfoData {
     };
   }
 
-function Coin() {
+interface ICoinProps {
+    theme: string | undefined;
+}
+
+
+function Coin({theme}:ICoinProps) {
     const { coinId } = useParams<RouteParams>();
     const { state } = useLocation<RouteState>();
     const priceMatch = useRouteMatch("/:coinId/price");
@@ -234,7 +239,7 @@ function Coin() {
                 <Price coinId={coinId} />
                 </Route>
                 <Route path={`/:coinId/chart`}>
-                <Chart coinId={coinId} />
+                <Chart theme={theme} coinId={coinId} />
                 </Route>
             </Switch>
             </>
