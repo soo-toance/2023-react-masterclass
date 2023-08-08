@@ -4,13 +4,16 @@ export const themeAtom = atom({
     key: "theme",
     default: "dark", 
 })
+
+type categories = "TO_DO" | "DOING" | "DONE";
+
 export interface IToDo {
     text: string;
     id: number;
-    category: "TO_DO" | "DOING" | "DONE";
+    category: categories;
   }
 
-export const categoryState = atom({
+export const categoryState = atom<categories>({
     key: "category",
     default: "TO_DO",
 })
