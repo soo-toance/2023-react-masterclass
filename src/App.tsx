@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from './theme';
 import { themeAtom } from "./atoms";
-import { useRecoilValue } from "recoil";
+import { RecoilRoot, useRecoilValue } from "recoil";
 import ToDoList from "./components/TodoList";
 
 const GlobalStyle = createGlobalStyle`
@@ -94,7 +94,9 @@ function App() {
     <>
      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
         <GlobalStyle />
+        {/* <RecoilRoot> */}
         <ToDoList />
+        {/* </RecoilRoot> */}
         <Router/>
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
