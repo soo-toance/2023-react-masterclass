@@ -21,8 +21,9 @@ function App() {
   return (
     <Wrapper>
       <Box
-        transition={{ delay: 3 }} 
-        animate={{borderRadius: "100px"}}
+        transition={{type: 'spring' }}
+        initial={{ scale: 0 }} 
+        animate={{scale: 1, rotateZ: 360 }}
         />
     </Wrapper>
   );
