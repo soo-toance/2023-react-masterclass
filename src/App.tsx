@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {motion, useMotionValue} from "framer-motion";
+import {motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 const Wrapper = styled.div`
@@ -52,16 +52,17 @@ function App() {
   const x = useMotionValue(0);
 
   // motionValue는 리랜더링 하지 않기 때문에, useEffect 훅 활용해 console 찍어줘야 함 
+  
+  const potato = useTransform(x, [-800, 0, 800], [2, 1, 0.1]);
   useEffect(() => {
-    x.onChange(() => console.log(x.get()))}
+    potato.onChange(() => console.log(potato.get()))}
     , [x]
   );
 
   return (
     <Wrapper>
-        <button onClick={(() => x.set(200))}>click me </button>
         <Box
-          style={{ x }}
+          style={{ x , scale: potato }}
           dragSnapToOrigin
           drag="x"
         />
