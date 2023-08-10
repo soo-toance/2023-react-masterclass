@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {motion} from "framer-motion";
+import { useRef } from "react";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -35,18 +36,35 @@ const boxVariants = {
 // 색상 추가 시 rgb 형식으로 넣어야 애니메이션이 진행됨 
 // backgroundColor: 'rgb(43,204,121)' 
 
+const BiggerBox = styled.div`
+  width: 600px;
+  height: 600px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  over-flow: hidden;
+`;
 
 
 function App() {
+  const biggerBoxRef = useRef<HTMLDivElement>(null);
+
   return (
     <Wrapper>
-      <Box
-        drag="x" // 수평, 수직 제한 제한 주기 : x, y 
-        variants={boxVariants}
-        whileHover="hover"
-        whileDrag="drag"
-        whileTap="click"
-      />
+      <BiggerBox ref={biggerBoxRef}>
+        <Box
+          drag
+          dragSnapToOrigin // 다시 돌아오도록 설정 
+          dragElastic={0} // 기본값 0.5, 이 설정 통해 강도 조정할 수 있음 
+          dragConstraints={biggerBoxRef}
+          variants={boxVariants}
+          whileHover="hover"
+          whileDrag="drag"
+          whileTap="click"
+        />
+      </BiggerBox>
     </Wrapper>
   );
 }
