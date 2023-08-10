@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {motion} from "framer-motion";
-import { useRef } from "react";
+import {motion, useMotionValue} from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -49,22 +49,22 @@ const BiggerBox = styled.div`
 
 
 function App() {
-  const biggerBoxRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+
+  // motionValue는 리랜더링 하지 않기 때문에, useEffect 훅 활용해 console 찍어줘야 함 
+  useEffect(() => {
+    x.onChange(() => console.log(x.get()))}
+    , [x]
+  );
 
   return (
     <Wrapper>
-      <BiggerBox ref={biggerBoxRef}>
+        <button onClick={(() => x.set(200))}>click me </button>
         <Box
-          drag
-          dragSnapToOrigin // 다시 돌아오도록 설정 
-          dragElastic={0} // 기본값 0.5, 이 설정 통해 강도 조정할 수 있음 
-          dragConstraints={biggerBoxRef}
-          variants={boxVariants}
-          whileHover="hover"
-          whileDrag="drag"
-          whileTap="click"
+          style={{ x }}
+          dragSnapToOrigin
+          drag="x"
         />
-      </BiggerBox>
     </Wrapper>
   );
 }
