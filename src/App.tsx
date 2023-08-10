@@ -41,7 +41,7 @@ function App() {
   return (
     <Wrapper>
       <Box
-        drag
+        drag="x" // 수평, 수직 제한 제한 주기 : x, y 
         variants={boxVariants}
         whileHover="hover"
         whileDrag="drag"
