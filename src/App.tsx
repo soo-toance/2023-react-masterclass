@@ -29,7 +29,11 @@ const Circle = styled(motion.div)`
 const boxVariants = {
   hover: { scale: 1.5, rotateZ: 90 },
   click: { scale: 1, borderRadius: "100px" },
+  drag: { backgroundColor: "rgb(46, 204, 113)", transition: { duration: 10 } },
 };
+
+// 색상 추가 시 rgb 형식으로 넣어야 애니메이션이 진행됨 
+// backgroundColor: 'rgb(43,204,121)' 
 
 
 
@@ -37,8 +41,10 @@ function App() {
   return (
     <Wrapper>
       <Box
+        drag
         variants={boxVariants}
         whileHover="hover"
+        whileDrag="drag"
         whileTap="click"
       />
     </Wrapper>
