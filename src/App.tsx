@@ -8,14 +8,16 @@ const Wrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 `;
 
 const Box = styled(motion.div)`
-  width: 100px;
+  width: 400px;
   height: 100px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
+  position: absolute;
+  top: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,22 +25,28 @@ const Box = styled(motion.div)`
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
 
-const boxVariants = {
+const box = {
   initial: {
-    opacity: 0,
-    scale: 0,
+    x:500,
+    opacity:0,
+    scale: 1,
   },
   visible: {
+    x:0,
     opacity: 1,
     scale: 1,
-    rotateZ: 360,
+    transition: {
+      duration: 2,
+    },
   },
   leaving: {
-    opacity: 0,
-    scale: 0,
-    y: 50,
+    x:-500,
+    opacity:0,
+    scale: 0
   },
 };
+
+
 
 function App() {
   const [visible, setVisible] = useState(1);
@@ -48,7 +56,13 @@ function App() {
     <Wrapper>
        <AnimatePresence>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-            i === visible ? <Box key={i}>{i}</Box> : null
+            i === visible ? <Box 
+                key={i} 
+                variants={box} 
+                initial="initial" 
+                animate="visible" 
+                exit="leaving">{i}</Box> 
+              : null
           ))}
        </AnimatePresence>
        <button onClick={nextPlease}>next</button>
