@@ -13,7 +13,7 @@ const Wrapper = styled(motion.div)`
 
 const Box = styled(motion.div)`
   width: 400px;
-  height: 100px;
+  height: 400px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
   position: absolute;
@@ -46,35 +46,28 @@ const box = {
   }),
 };
 
+const Circle = styled(motion.div)`
+  background-color: #00a5ff;
+  height: 100px;
+  width: 100px; 
+  border-radius: 50px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
+`;
 
 
 function App() {
-  const [visible, setVisible] = useState(1);
-  const [back, setBack] = useState(false);
-  const nextPlease = () => {
-    setBack(false);
-    setVisible((prev) => (prev === 10 ? 10 : prev + 1));
-  };
-  const previousPlease = () => {
-    setBack(true);
-    setVisible((prev) => (prev === 1 ? 1 : prev - 1));
-  };
+  const [clicked, setClicked] = useState(false);
+  const toggleClicked = () => setClicked((prev) => !prev);
 
 
   return (
-    <Wrapper>
-       <AnimatePresence custom={back}>
-          <Box 
-                custom={{back}}
-                key={visible} 
-                variants={box} 
-                initial="entry" 
-                animate="center" 
-                exit="exit">{visible}
+    <Wrapper onClick={toggleClicked}>
+          <Box style={{
+            justifyContent: clicked ?'center' : 'flex-start',
+            alignItems: clicked ?'center' : 'flex-start',
+          }}>
+            <Circle></Circle>
           </Box> 
-       </AnimatePresence>
-       <button onClick={nextPlease}>next</button>
-       <button onClick={previousPlease}>previous</button>
   </Wrapper>
   );
 }
