@@ -66,7 +66,7 @@ function App() {
             justifyContent: clicked ?'center' : 'flex-start',
             alignItems: clicked ?'center' : 'flex-start',
           }}>
-            <Circle></Circle>
+            <Circle layout />
           </Box> 
   </Wrapper>
   );
